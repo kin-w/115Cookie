@@ -1,0 +1,47 @@
+﻿{
+    /* 清单文件的版本，Chrome 扩展和应用的清单文件遵循此版本规范 */
+    "manifest_version": 3,
+    
+    /* 扩展的名称 */
+    "name": "115Cookie",
+    
+    /* 扩展的版本号 */
+    "version": "1.0",
+    
+    /* 对扩展的简短描述 */
+    "description": "115 Cookie更新插件，Docker项目设置Cookie可同步到此（免除登录操作）。",
+    
+    /* 指定扩展可以与之交互的主机权限列表 */
+    "host_permissions": [
+        "https://115.com/",         /* 允许扩展访问 115.com 的主站点 */
+        "https://*.115.com/"        /* 允许扩展访问 115.com 的所有子域名 */
+    ],
+    
+    /* 扩展所需的权限列表 */
+    "permissions": [
+        "cookies",                 /* 允许扩展读取和修改网站上的 cookies */
+        "storage",                 /* 允许扩展访问浏览器的存储 API，如 localStorage 和 sessionStorage */
+        "scripting"               /* 允许扩展在页面上注入脚本和执行其他脚本操作 */
+    ],
+    
+    /* 后台脚本和服务工作器的配置 */
+    "background": {
+        "service_worker": "worker.js" /* 指定后台服务工作器的脚本文件 */
+    },
+    
+    /* 内容脚本的配置 */
+    "content_scripts": [
+        {
+            /* 内容脚本将匹配并注入到以下 URL 模式的页面中 */
+            "matches": [
+                "<all_urls>" /* 匹配所有 URL，这意味着内容脚本将在所有页面上运行 */
+                /* 注意：出于安全和性能考虑，通常建议尽可能具体地指定需要匹配的 URL */
+            ],
+            
+            /* 要注入到匹配页面中的 JavaScript 文件列表 */
+            "js": [
+                "content.js" /* 指定内容脚本的脚本文件 */
+            ]
+        }
+    ]
+}
